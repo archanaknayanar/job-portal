@@ -55,6 +55,11 @@ try {
   console.log('✅ Scenario and test files generated successfully.');
 
 } catch (err) {
-  console.error('❌ Error generating test files:', err.message);
-  process.exit(1);
+    console.error('❌ Error generating test files:', err.message);
+    if (err.response) {
+      console.error("Status:", err.response.status);
+      console.error("Headers:", err.response.headers);
+      console.error("Data:", err.response.data);
+    }
+    process.exit(1);
 }
