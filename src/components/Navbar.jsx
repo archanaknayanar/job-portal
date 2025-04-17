@@ -1,7 +1,14 @@
+import { NavLink } from 'react-router-dom';
 import logo from '../assets/images/logo.png'
 
+
 const Navbar = () => {
-  return (
+    const linkClass = ({ isActive }) => (
+        isActive
+        ? "text-white bg-black hover:bg-gray-900 rounded-md hover:text-white px-3 py-2"
+        : "text-white  hover:bg-gray-900 rounded-md hover:text-white px-3 py-2"
+    );
+    return (
     <nav className="bg-indigo-700 border-b border-indigo-500">
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="flex h-20 items-center justify-between">
@@ -12,9 +19,9 @@ const Navbar = () => {
                     </a>
                     <div className='md:ml-auto'>
                         <div className='flex space-x-2'>
-                            <a className='text-white bg-black hover:bg-gray-900 rounded-md hover:text-white px-3 py-2' href='/index.html'>Home</a>
-                            <a className='text-white bg-black hover:bg-gray-900 rounded-md hover:text-white px-3 py-2' href='/index.html'>Jobs</a>
-                            <a className='text-white bg-black hover:bg-gray-900 rounded-md hover:text-white px-3 py-2' href='/index.html'>Add Job</a>
+                            <NavLink className={linkClass} to='/'>Home</NavLink>
+                            <NavLink className={linkClass} to='/jobs'>Jobs</NavLink>
+                            <NavLink className={linkClass} to='/add-job'>Add Job</NavLink>
                         </div>
                     </div>
                 </div>

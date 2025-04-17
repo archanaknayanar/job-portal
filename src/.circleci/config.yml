@@ -1,0 +1,10 @@
+# .circleci/config.yml
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/node:18.17
+    steps:
+      - checkout
+      - run: echo "✅ Hello, CircleCI is configured!"
