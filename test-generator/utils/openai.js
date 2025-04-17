@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+console.log("OpenAI API Key loaded:", !!process.env.OPENAI_API_KEY);
+
+
 export async function generateScenariosAndTest(issueBody, moduleName, baseUrl) {
   const prompt = `
 You are an expert QA automation engineer.
@@ -25,6 +28,7 @@ CODE:
 `;
 
   const apiKey = process.env.OPENAI_API_KEY;
+  
 
   const response = await axios.post(
     'https://api.openai.com/v1/chat/completions',
