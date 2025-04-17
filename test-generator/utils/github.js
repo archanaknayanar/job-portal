@@ -1,6 +1,6 @@
-const axios = require('axios');
+import axios from 'axios';
 
-async function fetchGitHubIssue(owner, repo, issueNumber) {
+export async function fetchGitHubIssue(owner, repo, issueNumber) {
   const token = process.env.GH_TOKEN;
   const url = `https://api.github.com/repos/${owner}/${repo}/issues/${issueNumber}`;
 
@@ -13,5 +13,3 @@ async function fetchGitHubIssue(owner, repo, issueNumber) {
 
   return response.data;
 }
-
-module.exports = { fetchGitHubIssue };
