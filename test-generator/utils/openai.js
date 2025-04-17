@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import axios from 'axios';
 
 console.log("OpenAI API Key loaded:", !!process.env.OPENAI_API_KEY);
