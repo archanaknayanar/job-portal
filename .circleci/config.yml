@@ -14,6 +14,15 @@ jobs:
           name: Install Dependencies
           command: npm install
       - run:
+          name: Debug GH_TOKEN Presence
+          command: |
+            if [ -z "$GH_TOKEN" ]; then
+              echo "❌ GH_TOKEN is not set"
+              exit 1
+            else
+              echo "✅ GH_TOKEN is set"
+            fi
+      - run:
           name: Run Test Generator
           command: |
             node test-generator/generate-tests.js your-org your-repo $CIRCLE_PULL_REQUEST_NUMBER https://fortuneindia-rpsg-web.qtstage.io/
