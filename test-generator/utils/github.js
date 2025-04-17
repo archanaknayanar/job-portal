@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+const token = process.env.GH_TOKEN;
+
+
 console.log("GitHub Token present:", !!token);
 console.log("URL:", url);
 
-const token = process.env.GH_TOKEN;
 
 
 export async function fetchGitHubIssue(owner, repo, issueNumber) {

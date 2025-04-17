@@ -8,7 +8,6 @@ import { generateScenariosAndTest } from './utils/openai.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-dotenv.config();
 
 console.log("Is GH_TOKEN loaded:", !!process.env.GH_TOKEN);
 
