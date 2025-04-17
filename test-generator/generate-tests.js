@@ -8,32 +8,36 @@ import { generateScenariosAndTest } from './utils/openai.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
 console.log("Is GH_TOKEN loaded:", !!process.env.GH_TOKEN);
 
-
-// Get CircleCI environment variables
+// CircleCI environment
 const branchName = process.env.CIRCLE_BRANCH || '';
 const issueIdMatch = branchName.match(/(\d+)-.*test-gen/);
 
 if (!issueIdMatch) {
-  console.error('Branch name does not match required format (e.g., 123-test-gen).');
+  console.error('❌ Branch name does not match required format (e.g., 123-test-gen).');
   process.exit(1);
 }
 
 const issueId = issueIdMatch[1];
-const owner = 'archanaknayanar'; // ⬅️ Replace with actual GitHub org/user
-const repo = 'job-portal'; // ⬅️ Replace with actual GitHub repo
+const owner = 'archanaknayanar';
+const repo = 'job-portal';
 const baseUrl = process.env.BASE_URL || 'https://fortuneindia-rpsg-web.qtstage.io/';
 
 try {
   const issue = await fetchGitHubIssue(owner, repo, issueId);
 
-  const title = issue.title; // Example: "Acceptance Criteria - Breaking News"
-  const body = issue.body;
+  const title = issue.title || 'general';
+  const body = issue.body || '';
 
-  const moduleMatch = title.match(/Acceptance Criteria\s*-\s*(.+)/i);
-  const moduleName = moduleMatch ? moduleMatch[1].trim().toLowerCase().replace(/\s+/g, '-') : 'general';
+  const hasAcceptanceCriteria = body.toLowerCase().includes('acceptance criteria');
+
+  if (!hasAcceptanceCriteria) {
+    console.error("❌ Issue body does not contain 'Acceptance Criteria'. Skipping test generation.");
+    process.exit(1);
+  }
+
+  const moduleName = title.trim().toLowerCase().replace(/\s+/g, '-');
 
   console.log(`Generating tests for module: ${moduleName}`);
 
