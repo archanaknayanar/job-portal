@@ -15,7 +15,7 @@ export async function fetchGitHubIssue(owner, repo, issueNumber) {
 
   const response = await axios.get(url, {
     headers: {
-      Authorization: `token ${token}`,
+      Authorization: `Bearer ${token}`,
       Accept: 'application/vnd.github.v3+json'
     }
   });
