@@ -1,8 +1,6 @@
 import 'dotenv/config';
 import axios from 'axios';
 
-console.log("OpenAI API Key loaded:", !!process.env.OPENAI_API_KEY);
-
 
 
 export async function generateScenariosAndTest(issueBody, moduleName, baseUrl) {
@@ -31,12 +29,15 @@ CODE:
 
   const apiKey = process.env.OPENAI_API_KEY;
   const orgId = process.env.OPENAI_ORG_ID;
+
+  console.log("OpenAI API Key loaded:", !!apiKey);
+  console.log("OpenAI Org ID loaded:", !!orgId);
   
 
   const response = await axios.post(
     'https://api.openai.com/v1/chat/completions',
     {
-      model: 'gpt-4',
+      model: 'gpt-4o',
       messages: [
         {
           role: 'user',
