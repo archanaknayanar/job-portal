@@ -22,8 +22,8 @@ if (!issueIdMatch) {
 }
 
 const issueId = issueIdMatch[1];
-const owner = 'your-org'; // ⬅️ Replace with actual GitHub org/user
-const repo = 'your-repo'; // ⬅️ Replace with actual GitHub repo
+const owner = 'archanaknayanar'; // ⬅️ Replace with actual GitHub org/user
+const repo = 'job-portal'; // ⬅️ Replace with actual GitHub repo
 const baseUrl = process.env.BASE_URL || 'https://fortuneindia-rpsg-web.qtstage.io/';
 
 try {
