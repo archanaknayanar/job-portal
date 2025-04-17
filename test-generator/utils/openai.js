@@ -2,6 +2,8 @@ import 'dotenv/config';
 import axios from 'axios';
 
 console.log("OpenAI API Key loaded:", !!process.env.OPENAI_API_KEY);
+console.log("OpenAI Org ID loaded:", !!orgId);
+
 
 
 export async function generateScenariosAndTest(issueBody, moduleName, baseUrl) {
@@ -29,12 +31,13 @@ CODE:
 `;
 
   const apiKey = process.env.OPENAI_API_KEY;
+  const orgId = process.env.OPENAI_ORG_ID;
   
 
   const response = await axios.post(
     'https://api.openai.com/v1/chat/completions',
     {
-      model: 'gpt-3.5-turbo',
+      model: 'gpt-4',
       messages: [
         {
           role: 'user',
@@ -46,6 +49,7 @@ CODE:
     {
       headers: {
         Authorization: `Bearer ${apiKey}`,
+        'OpenAI-Organization': orgId,
         'Content-Type': 'application/json'
       }
     }
